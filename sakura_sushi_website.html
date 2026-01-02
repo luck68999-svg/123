@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>櫻花壽司店 | 正宗日式料理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #c94b4b 0%, #d63447 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cherry {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5e6d3" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%23ffb3ba" opacity="0.3"/><circle cx="900" cy="400" r="100" fill="%23ffb3ba" opacity="0.3"/><circle cx="1100" cy="100" r="60" fill="%23ffc9c9" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #d63447;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(214, 52, 71, 0.4);
+        }
+
+        .btn:hover {
+            background: #c94b4b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(214, 52, 71, 0.6);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #d63447;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #d63447;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 35px rgba(214, 52, 71, 0.2);
+        }
+
+        .menu-item-img {
+            height: 200px;
+            background: linear-gradient(135deg, #ffd6d6 0%, #ffe6e6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item h3 {
+            color: #d63447;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .about {
+            background: #fff5f5;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #d63447;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .about-img {
+            text-align: center;
+            font-size: 15rem;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #d63447 0%, #c94b4b 100%);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-title::after {
+            background: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-img {
+                font-size: 8rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1><span class="cherry">🌸</span> 櫻花壽司店</h1>
+                    <p>正宗日式料理 · 新鮮美味</p>
+                </div>
+                <nav>
+                    <a href="#home">首頁</a>
+                    <a href="#menu">菜單</a>
+                    <a href="#about">關於我們</a>
+                    <a href="#contact">聯絡我們</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>歡迎來到櫻花壽司店</h2>
+            <p>體驗最道地的日式壽司料理</p>
+            <a href="#menu" class="btn">查看菜單</a>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">精選菜單</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-img">🍣</div>
+                    <div class="menu-item-content">
+                        <h3>握壽司拼盤</h3>
+                        <p>精選新鮮魚料，搭配職人手捏壽司飯，呈現最原始的美味</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">🍱</div>
+                    <div class="menu-item-content">
+                        <h3>豪華壽司便當</h3>
+                        <p>多樣化組合，包含握壽司、卷壽司及精緻小菜</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">🍤</div>
+                    <div class="menu-item-content">
+                        <h3>天婦羅套餐</h3>
+                        <p>酥脆外皮，鮮嫩內裡，搭配特製沾醬</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">🍜</div>
+                    <div class="menu-item-content">
+                        <h3>拉麵系列</h3>
+                        <p>濃郁湯頭，Q彈麵條，滿足您的味蕾</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">🍲</div>
+                    <div class="menu-item-content">
+                        <h3>壽喜燒套餐</h3>
+                        <p>精選和牛，搭配新鮮蔬菜，濃郁湯底</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">🍶</div>
+                    <div class="menu-item-content">
+                        <h3>清酒系列</h3>
+                        <p>多種日本清酒供您選擇，完美搭配日式料理</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">關於我們</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>傳承日式料理精髓</h3>
+                    <p>櫻花壽司店秉持著對日式料理的熱愛與堅持，每一道料理都經過精心挑選食材與細心烹調。我們的主廚擁有多年日本料理經驗，將最道地的日式風味帶到新山。</p>
+                    <br>
+                    <p>從清晨市場採購最新鮮的海鮮，到精心準備每一份壽司飯，我們致力於為每一位客人提供最優質的用餐體驗。無論是商務聚餐或家庭聚會，櫻花壽司店都是您的最佳選擇。</p>
+                    <br>
+                    <p>歡迎蒞臨品嚐！</p>
+                </div>
+                <div class="about-img">
+                    🏮
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">聯絡我們</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>地址</h3>
+                    <p>64A Jalan Dedap 7<br>Taman Johor Jaya<br>81100 Johor Bahru</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>電話</h3>
+                    <p>018-2777989</p>
+                    <p>歡迎來電預約訂位</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🕐</div>
+                    <h3>營業時間</h3>
+                    <p>週一至週日<br>11:00 AM - 10:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 櫻花壽司店 | 版權所有</p>
+            <p>Sakura Sushi Restaurant - Authentic Japanese Cuisine</p>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 滾動動畫效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
